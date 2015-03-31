@@ -15,7 +15,6 @@ def sum (arval)
   end
   $rs
 end
-def calculator
 
 def multiply(arval)
   rs=1
@@ -39,7 +38,6 @@ def factorial(val)
     rs= rs*i
   end
   rs
-end
 end
 
 
