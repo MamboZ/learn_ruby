@@ -43,5 +43,5 @@ end
 end
 
 
-print calculator.multiply([6,2])
+# print calculator.multiply([6,2])
 # print calculator.factorial(10)
