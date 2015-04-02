@@ -30,7 +30,7 @@ def translate (str)
       if tmpstr[0..1] == "qu"
         res= res + tmpstr.delete(tmpstr[0..1])<<tmpstr[0..1]+"ay"
       elsif tmpstr[0..2] == "sch"
-        res= tmpstr.delete(tmpstr[0..2])<<tmpstr[0..2]+"ay"
+        res+= tmpstr.delete(tmpstr[0..2])<<tmpstr[0..2]+"ay"
         else
           j = 0
           res_=""
@@ -47,4 +47,4 @@ def translate (str)
   return res.strip
 end
 
-# print  translate("quiet")#("hello i say yes")
+# print  translate("hello i say yes its my schook be quaet")
