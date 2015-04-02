@@ -1,12 +1,8 @@
 class Friend
   def greeting(who=nil)
-    rs=""
-    vh = "Hello"
-    if who.equal?nil
-      rs<<vh<<"!"
-      else rs=vh<<", "<<who<<"!"
+    if who
+      return "Hello, #{who}!"
+      else return "Hello!"
     end
   end
 end
-
- puts f= Friend.new.greeting()
