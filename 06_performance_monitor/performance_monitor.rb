@@ -9,5 +9,3 @@ def measure(pass = 0)
   end
   (Time.now - start_time) / (pass == 0 ? 1 : pass)
 end
-
-measure{}
