@@ -1,8 +1,5 @@
 class Friend
   def greeting(who=nil)
-    if who
-      return "Hello, #{who}!"
-      else return "Hello!"
-    end
+    return who.equal?(nil)?"Hello!": "Hello, #{who}!"
   end
 end
