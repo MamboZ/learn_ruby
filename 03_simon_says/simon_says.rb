@@ -1,35 +1,29 @@
   def echo(val)
-    val
+    return val
   end
 
   def shout(val)
-    val.upcase
+    return val.upcase
   end
 
   def repeat(val, repVal =2)
-    rs = ""
-    for i in 1..repVal do
-      rs = rs + " " + val
-    end
-    rs.lstrip
+    nw = val.split(" ").repeated_combination(repVal).to_a
+    return nw.join(" ")
   end
 
   def start_of_word (str, strPos=1)
-    str[0,strPos]
+    return str[0,strPos]
   end
 
   def first_word (str)
-    str.split(' ')[0]
+    return str.split(' ')[0]
   end
 
   def titleize (str)
-    rs = str.split(' ')[0].capitalize
-    for i in 1..str.split(' ').length-1 do
-      if (str.split(' ')[i].length > 4) ||
-         (str.split(' ')[i].casecmp("kwai") == 0) # check name dictionary
-        rs = rs + " " + str.split(' ')[i].capitalize
-        else rs = rs + " " + str.split(' ')[i]
-      end
-    end
-    rs
+    nocaps = "and over the if or not am" #not capitalized words
+    tmp_str = str.split(" ")
+    tmp_str.shift
+    fword= Array.new(1, str.split(" ")[0].capitalize)
+    fword_= tmp_str.map { |word| nocaps.include?(word) ? word : word.capitalize }
+    return fword.concat(fword_).join(" ")
   end
