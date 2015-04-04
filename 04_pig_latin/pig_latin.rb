@@ -1,50 +1,47 @@
-def translate (str)
-  res = " "
+def translate(str)
+  vowels = ['a', 'e', 'i', 'o', 'u']
+  words = str.split(' ')
+  result = []
 
-  def checkVowel (str)
-    rs = true
-    vowel="eyuioa"
-    b = vowel[str[0]]
-    if b.equal?nil
-      rs= false
-    end
-    rs
-  end
-
-  def checkConsonant(str)
-    rs = true
-    consonant="qwrtpsdfghjklzxcvbnm"
-    b = consonant[str[0]]
-    if b.equal?nil
-      rs= false
-    end
-    rs
-  end
-
-  for i in 0..str.split(' ').length-1 do
-    tmpstr = str.split(' ')[i]
-    if checkVowel(tmpstr)
-      res=res + tmpstr<<"ay"
-    end
-    if checkConsonant(tmpstr)
-      if tmpstr[0..1] == "qu"
-        res= res + tmpstr.delete(tmpstr[0..1])<<tmpstr[0..1]+"ay"
-      elsif tmpstr[0..2] == "sch"
-        res+= tmpstr.delete(tmpstr[0..2])<<tmpstr[0..2]+"ay"
+  words.each_with_index do |word, i|
+    translation = ''
+    qu = false
+    if vowels.include? word[0]
+      translation = word + 'ay'
+      result.push(translation)
+    else
+      word = word.split('')
+      count = 0
+      word.each do |char|
+        if vowels.include? char
+          # handle words that start with 'qu'
+          if char == 'u' and translation[-1] == 'q'
+            qu = true
+            translation = words[i][count + 1..words[i].length] + translation + 'uay'
+            result.push(translation)
+            next
+          end
+          break
         else
-          j = 0
-          res_=""
-          begin
-            res_= tmpstr.delete(tmpstr[0..j])<<tmpstr[0..j]
-            j+=1
-          end while checkConsonant(tmpstr[j])
-          res = res + res_ + "ay"
+          # handle words with 'qu' in middle
+          if char == 'q' and word[i+1] == 'u'
+            qu = true
+            translation = words[i][count + 2..words[i].length] + 'quay'
+            result.push(translation)
+            next
+          else
+            translation += char
+          end
+          count += 1
+        end
+      end
+      # translation of consonant words without qu
+      if not qu
+        translation = words[i][count..words[i].length] + translation + 'ay'
+        result.push(translation)
       end
     end
-    res<<" "
+
   end
-
-  return res.strip
+  result.join(' ')
 end
-
-# print  translate("hello i say yes its my schook be quaet")
